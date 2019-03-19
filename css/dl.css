@@ -1,0 +1,161 @@
+@charset "utf-8";
+/* CSS Document */
+*{
+	margin:0;
+	padding:0;
+}
+a{
+	text-decoration: none;
+}
+
+.box{
+	width: 972px;
+	height:533px;
+	margin-left: 182px;
+	margin-top: 90px;
+}
+.box1{
+	float: left;
+}
+.logal{
+	width: 581px;
+	height: 87px;
+}
+
+.pic{
+	width: 581px;
+	height: 447px;
+}
+.pic img{
+	margin-left: 34px;
+}
+.box2{
+	float: left;
+	width: 391px;
+	height: 533px;
+}
+.rbox{
+	width: 346px;
+	height: 330px;
+	margin-left:34px; 
+	margin-top:18px;
+	border:1px solid #f7f7f7;
+}
+.rbox h2{
+	color:#f450a2; 
+	font-size:18px;
+	margin-left:18px; 
+	margin-top:20px;
+}
+.selbox{
+	margin-left: 18px;
+	margin-top: 30px;
+	border: none;
+	font-size: 12px;
+	color: #757575;
+	width:55px; 
+	height:39px;
+	border:1px solid #cccccc;
+	box-shadow: inset 3px 3px 15px #f1f1f1;
+}
+.phone{
+	width:248px; 
+	height:37px;
+	border: none;
+	font-size: 12px;
+	border:1px solid #cccccc;
+	border-left: none;
+	color: #757575;
+	box-shadow: inset 3px 3px 15px #f1f1f1;
+}
+.num{
+	width:304px; 
+	height:38px;
+	margin: 0 auto;
+	margin-top: 16px;
+}
+.num1{
+	width:146px; 
+	height:38px;
+	border: none;
+	color: #757575;
+	border:1px solid #cccccc;
+	text-indent:15px;
+	box-shadow: inset 3px 3px 15px #f1f1f1;
+}
+.num2{
+	width:146px; 
+	height:40px;
+	border: none;
+	color: #757575;
+	font-size: 12px;
+	border:1px solid #cccccc;
+	background-color:#f4f4f4; 
+	font-weight: bold;
+	box-shadow: inset 3px 3px 15px #f1f1f1;
+}
+
+.numpass{
+	width:304px; 
+	height:38px;
+	margin: 0 auto;
+	margin-top: 16px;
+	color: #111111;
+	font-size:18px;
+}
+.againpass{
+	width:240px; 
+	height:38px;
+	border: none;
+	color: #757575;
+	border:1px solid #cccccc;
+	box-shadow: inset 3px 3px 15px #f1f1f1;
+}
+.dlbox{
+	float: left;
+	width:283px; 
+	height:40px;
+	background-color: #f450a2;
+	margin-left: 20px;
+	margin-top: 18px;
+}
+.dlbox input{
+	font-size:21px; 
+	color:white;
+	width:283px; 
+	height:40px;
+	line-height: 40px;
+	font-weight:bold;
+	text-align: center;
+	border: none;
+	background-color:#f450a2; 
+}
+.wz{
+	float: left;
+	width: 284px;
+	height: 31px;
+	margin-top: 15px;
+	margin-left: 20px;
+}
+.wz p{
+	float: left;
+	color: #2c6666;
+	font-size: 12px;
+	line-height: 31px;
+}
+.rbox img{
+	margin-left: 5px;
+}
+.box3{
+	float: left;
+	width: 972px;
+	height: 55px;
+	/*background-color: red;*/
+	margin: 0 auto;
+}
+.box3 p{
+	font-size: 13px;
+	color:#cdd2db;
+	text-align: center;
+	margin-bottom: 32px;
+}

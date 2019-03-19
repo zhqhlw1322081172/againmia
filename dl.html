@@ -24,17 +24,17 @@
 						<option>+24</option>
 						<option>+35</option>
 						<option>+46</option>
-						<input type="text" placeholder="手机号" class="phone" name="ursephone">
+						<input type="text" placeholder="手机号" class="phone" name="ursephone" id="ursephone">
 					</select>
 					<div class="numpass">
-						密码：<input class="againpass" type="password" name="ursepass">
+						密码：<input class="againpass" type="password" name="ursepass" id="ursepass">
 					</div>
 					<div class="num">
 						<input type="text" placeholder="短信验证码" class="num1">
 						<input type="button" value="获取短信验证码" class="num2">
 					</div>
 					<a class="dlbox" href="#">
-						<p><input type="submit"  value="一键登录" /></p>
+						<p><input id="but1" type="submit"  value="一键登录" /></p>
 					</a>
 				</form>
 
@@ -51,3 +51,36 @@
 	</div>
 </body>
 </html>
+<script type="text/javascript">
+	window.onload = function(){
+		$("#but1").onclick = function(){
+			let xhr = new XMLHttpRequest();
+			xhr.open("post","dl.php",true);
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState ==4 && xhr.status == 200){
+					if(xhr.responseText =="1"){
+						location.href = "miasy.html";
+					}else{
+						alert("密码或账号错误，请重新输入");
+					}
+				}
+			}
+			xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			xhr.send(`ursephone=${$("#ursephone").value}&ursepass=${$("#ursepass").value}`);
+		}
+		
+	}
+
+
+
+
+function $(str){
+	if(str.charAt(0)=="#"){
+		return document.getElementById(str.substring(1));
+	}else if(str.charAt(0)=="."){
+		return document.getElementsByClassName(str.substring(1));
+	}else{
+		return document.getElementsByTagName(str);
+	}
+}	
+</script>
