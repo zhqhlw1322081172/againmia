@@ -815,7 +815,7 @@
 				<a href="#">红色小象</a>
 				<a href="#"><input class="but02" type="button" value="正在参加拼团活动&gt;"></a>
 			</div>
-			<a href="#" class="boxdown" >
+			<a href="gwcsp.html" class="boxdown" >
 				<img src="img/s3.jpg">
 				<span class="words">直降</span>
 				<p>婴儿清新果香洗衣皂8连包</p>
@@ -1110,6 +1110,20 @@
 			</a>
 		</div>
 
+		
+		<!-- 从数据库获取的盒子 -->
+		<div class="goodsth">
+			<div class="boxup">
+				<img src="img/l1.jpg">
+				<a href="#">红色小象</a>
+				<a href="#"><input class="but02" type="button" value="正在参加拼团活动&gt;"></a>
+			</div>
+			<div id="test">
+			</div>
+		</div>
+
+
+
 	</div>
 <!-- foot部分 -->
 	<div class="foot">
@@ -1269,6 +1283,7 @@
 <script type="text/javascript" src="js/mover.js"></script>
 <script type="text/javascript" src="js/bannerPic.js"></script>
 <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="js/ajaxTools.js"></script>
 <script type="text/javascript">
 window.onload = function(){
     new BannerPic({
@@ -1278,12 +1293,49 @@ window.onload = function(){
 			"douHighColor":"#fa4b9b",//高亮颜色
 			"doudouDirection":"下"			
 		});
+
+
+    ajax1811ByObjAndDefault({
+			"url":"getGoodsList.php",
+			"func":showData
+		});
+
+	function showData(str){
+		let objs = JSON.parse(str);
+		let htmlStr="";
+		for(let i in objs){
+			htmlStr +=`
+				<a href="goods.html?goodsId=${objs[i].goodsId}" class="boxdown" >
+					<img src=" ${objs[i].goodsImg}">
+					<span class="words"> ${objs[i].goodsDesc}</span>
+					<p> ${objs[i].goodsName}</p>
+					<strong> ${objs[i].goodsPrice}</strong>
+					<span class="num"> ${objs[i].beiyong1}</span>
+				</a>`;	
+		}
+		document.getElementById("test").innerHTML = htmlStr;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 var num = 200;	
 $(window).scroll(function(){
 	var scrollnum = document.body.scrollTop || document.documentElement.scrollTop;
-	 console.log(scrollnum);
+	 // console.log(scrollnum);
 	 if(scrollnum>num){
 	 	hq(".lside")[0].style.display="block";
 	 	hq(".rside")[0].style.display="block";
