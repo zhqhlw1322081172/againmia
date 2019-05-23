@@ -12,9 +12,9 @@
 			<a href="#">手机蜜芽</a>
 			<div class="rightbox">
 				<p>你好，欢迎来到蜜芽！</p>
-				<a href="zy.html">登录</a>
+				<a href="dl.html">登录</a>
 				<img src="img/2.jpg">
-				<a href="zy.html">免费注册</a>
+				<a href="zc.html">免费注册</a>
 				<a href="#">帮助中心</a>
 			</div>
 	</div>
@@ -58,7 +58,7 @@
 <!-- 图片 -->
 	<div class="twobox">
 		<div class="bigp">
-			<img src="imgs/p8.jpg">
+			<img id="bigp" src="imgs/p8.jpg">
 		</div>
 		
 		<div class="wzbox">
@@ -114,7 +114,7 @@
 
 
 		<div class="addcar">
-			<a href="#">加入购物车</a>
+			<a href="gwc.html">加入购物车</a>
 			<a class="shouc" href="#">
 				收藏
 			</a>
@@ -122,12 +122,12 @@
 
 		
 
-		<div class="smallp">
+		<div class="smallp" id="smallp">
 			<img src="imgs/p4.jpg">
+			<img src="imgs/p10.jpg">
+			<img src="imgs/p8.jpg">
 			<img src="imgs/p4.jpg">
-			<img src="imgs/p4.jpg">
-			<img src="imgs/p4.jpg">
-			<img src="imgs/p4.jpg" class="last">
+			<img src="imgs/p9.jpg" class="last">
 		</div>
 
 		<dl class="post">
@@ -738,7 +738,7 @@
 	<div class="shopping">
 		<p>猜你喜欢</p>
 		<div class="like">
-			<a href="#"><img src="imgs/p4.jpg"></a>
+			<a href="#"><img src="imgs/p10.jpg"></a>
 			<a href="#">小方包</a>
 			<span>￥168.00</span>
 		</div>
@@ -752,7 +752,7 @@
 
 		
 		<div class="like">
-			<a href="#"><img src="imgs/p4.jpg"></a>
+			<a href="#"><img src="imgs/p8.jpg"></a>
 			<a href="#">小方包</a>
 			<span>￥168.00</span>
 		</div>
@@ -766,7 +766,7 @@
 
 
 		<div class="like">
-			<a href="#"><img src="imgs/p4.jpg"></a>
+			<a href="#"><img src="imgs/p9.jpg"></a>
 			<a href="#">小方包</a>
 			<span>￥168.00</span>
 		</div>
@@ -785,13 +785,13 @@
 		</div>
 
 		<div class="like">
-			<a href="#"><img src="imgs/g1.jpg"></a>
+			<a href="#"><img src="imgs/p10.jpg"></a>
 			<a href="#">小方包</a>
 			<span>￥168.00</span>
 		</div>
 
 		<div class="like">
-			<a href="#"><img src="imgs/p4.jpg"></a>
+			<a href="#"><img src="imgs/p8.jpg"></a>
 			<a href="#">小方包</a>
 			<span>￥168.00</span>
 		</div>
@@ -979,7 +979,7 @@
 				</div>
 			</div>
 		</div>
-		第三个盒子
+		<!-- 第三个盒子 -->
 		<div class="foot3">
 			<ul class="nav">
 				<li><a href="#">关于蜜芽</a>|</li>
@@ -1047,7 +1047,7 @@ window.onload = function(){
 	var num = 200;	
 	$(window).scroll(function(){
 		var scrollnum = document.body.scrollTop || document.documentElement.scrollTop;
-		 // console.log(scrollnum);
+		 console.log(scrollnum);
 		 if(scrollnum>num){
 		 	hq(".lside")[0].style.display="block";
 		 	hq(".rside")[0].style.display="block";
@@ -1055,8 +1055,18 @@ window.onload = function(){
 		 	hq(".lside")[0].style.display="none";
 		 	hq(".rside")[0].style.display="none";
 		 }
+
+		if(scrollnum>1300){
+			$(".fixedshop").css({"position":"fixed","top":"0"});
+		}else{
+			$(".fixedshop").css("position","static");
+		}
+
+
 	});
 
+
+	 
 
 
 	// 返回顶部
@@ -1093,10 +1103,29 @@ function changeCount(spanDom,inc){
 }
 
 
+	
+	// $(".smallp").find("img").each(function(){
+	// 	$(this).mouseover(function(){
+	// 		$(".bigp").find("img").attr("src","imgs/p4.jpg");
+	// 	});
+	// });
 
+	// 滑动改变图片
+	let smallp = hq("#smallp").children;
+	for(let i=0;i<smallp.length;i++){
+		smallp[i].onmouseenter = function(){
+			hq("#bigp").src = this.src;
+		}
+	}
 
-
-
+	 
+	// $(".fixedshop").scroll(function(){
+	// 	var scrollMath = document.documentElement.scrollTop || document.body.scrollTop;
+	// 	// console.log(scrollMath);
+	// 	if(scrollMath>1300){
+	// 		$(".fixedshop").css({"position":"fixed","top":"0"});
+	// 	}
+	// });
 
 
 

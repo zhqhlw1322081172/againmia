@@ -24,16 +24,17 @@
 						<option>+24</option>
 						<option>+35</option>
 						<option>+46</option>
-						<input type="text" placeholder="手机号" class="phone" name="ursephone"><span></span>
+						<input type="text" placeholder="手机号" class="phone" name="ursephone" id="ursephone">
+						<span></span>
 					</select>
 					<div class="num">
-						密码：<input class="pass" type="password" name="ursepass"><span></span>
+						密码：<input class="pass" type="password" name="ursepass" id="ursepass"><span></span>
 					</div>
 					<div class="num2">
-						重复密码：<input class="againpass" type="password">
+						重复密码：<input class="againpass" type="password" id="againpass">
 					</div>
 					<a class="dlbox" href="#">
-						<p><input type="submit"  value="注册" /></p>
+						<p><input id="but1" type="submit"  value="注册" /></p>
 					</a>
 				</form>
 				
@@ -52,20 +53,22 @@
 </html>
 <script type="text/javascript">
 window.onload = function(){
-		$(".phone").onblur = function(){
+		$("#ursephone").onblur = function(){
 		//手机的规则：11位数字，1开头
 		var r = /^1[1-9]\d{9}$/;
 
 		if(r.test(this.value)){
 			this.nextElementSibling.innerHTML = "√";
+			
 		}else{
 			this.nextElementSibling.innerHTML = "×";
+			
 		}
 	}
 
-	$(".pass").onblur = function(){
-		//密码的规则：6位数字
-		var r = /\d{6}/;
+	$("#ursepass").onblur = function(){
+		//密码的规则：6位数字，不以0开头
+		var r = /^[1-9]\d{5}$/;
 
 		if(r.test(this.value)){
 			this.nextElementSibling.innerHTML = "√";
@@ -73,6 +76,36 @@ window.onload = function(){
 			this.nextElementSibling.innerHTML = "×";
 		}
 	}
+
+	$("#againpass").onblur = function(){
+		if($("#ursepass").value!=$("#againpass").value){
+		alert("密码和重复密码不一致");
+		}
+	}
+	
+
+
+	// 注册跳转界面
+	$("#but1").onclick = function(){
+		let xhr = new XMLHttpRequest();
+		xhr.open("post","zc.php",true);
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState ==4 && xhr.status ==200){
+				if(xhr.responseText =="1"){
+					location.href = "dl.html";
+				}else{
+					alert("注册失败");
+				}
+			}
+		}
+		//4.发送请求
+		//如果是post的话，必须设置请求头
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");//设置请求头
+
+		xhr.send(`ursephone=${$("#ursephone").value}&ursepass=${$("#ursepass").value}`);//键值对，要跟后端交流的，后端根据键取值
+	}
+
+
 
 
 }

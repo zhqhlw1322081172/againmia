@@ -59,8 +59,8 @@
 			</div>
 			
 
-			<div class="middle">
-				<input type="button" class="but01">
+			<div class="middle" id="shop">
+				<!-- <input type="button" class="but01">
 				<span class="cla">满减</span>
 				<div class="midright">
 					<span>再购29.1元，立享【第二件1元】</span>
@@ -71,7 +71,7 @@
 					
 				</div>
 
-				<div class="bodydown" id="t">
+				<div class="bodydown" >
 					<input type="button" class="but01">
 					
 						<img src="imgs/3.jpg">
@@ -94,7 +94,7 @@
 
 						<div class="num">
 							<span>￥49</span>
-							<a href="#">删除</a>
+							<a href="#" class="delcal">删除</a>
 						</div>
 
 				</div>
@@ -103,7 +103,7 @@
 
 
 
-				<div class="bodydown" id="t">
+				<div class="bodydown">
 					<input type="button" class="but01">
 					
 						<img src="imgs/3.jpg">
@@ -126,7 +126,7 @@
 
 						<div class="num">
 							<span>￥49</span>
-							<a href="#">删除</a>
+							<a href="#" class="delcal">删除</a>
 						</div>
 
 				</div>
@@ -137,13 +137,13 @@
 
 
 
+ -->
 
 
 
 
 
-
-			</div>
+			<!-- </div> -->
 		</div>
 	</div>
 <!-- 全选的盒子 -->
@@ -323,7 +323,9 @@
 
 </body>
 </html>
+<script type="text/javascript" src="js/ajaxTools.js"></script>
 <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="js/cookieTools.js"></script>
 <script type="text/javascript">
 window.onload = function(){
 
@@ -359,6 +361,19 @@ window.onload = function(){
 	}
 
 	
+	// //删除
+	// var del = hq(".delcal");
+	// for(var i=0;i<del.length;i++){
+	// 	del[i].onclick = function(){
+	// 		alert("确定要删除吗？");
+	// 		let bodn = hq(".bodydown");
+	// 		bodn[0].style.display = "none";
+	// 	}
+	// }
+
+
+
+
 
 
 	// 点加号
@@ -368,6 +383,20 @@ window.onload = function(){
 		btnAdds[i].onclick = function(){
 			var spanDom = this.previousElementSibling;
 			changeCount(this,spanDom,1);
+			let nums = $(this).parent().parent().parent().find($(".gid")).html()
+			
+			let ns = parseInt($(this).parent().find($(".spanDom")).html())
+			// console.log(ns)
+			$.ajax({
+        	"type":"get",
+        	"url":"updateGoodsCount.php",
+        	"data":{"vipName":phone,
+        		"goodsId":nums,
+        		"goodsCount":ns
+            },
+        success: function (data) {
+            }
+    })
 		}
 	}
 
@@ -379,6 +408,20 @@ window.onload = function(){
 		btnReduces[i].onclick = function(){
 			var spanDom = this.nextElementSibling;
 			changeCount(this,spanDom,-1);
+			let nums = $(this).parent().parent().parent().find($(".gid")).html()
+			
+			let ns = parseInt($(this).parent().find($(".spanDom")).html())
+			// console.log(ns)
+			$.ajax({
+        	"type":"get",
+        	"url":"updateGoodsCount.php",
+        	"data":{"vipName":phone,
+        		"goodsId":nums,
+        		"goodsCount":ns
+            },
+        success: function (data) {
+            }
+    })
 		}
 	}
 
@@ -402,6 +445,14 @@ function changeCount(selfDom,spanDom,inc){
 	
 	//4)、计算总金额
 	// totalMoneyF();
+
+	// let numsw =0;
+	// for(let i=0;i<$(".num").length;i++){
+	// // console.log($(".num").eq(i).find("span").html())
+	// numsw=numsw+parseInt($(".num").eq(i).find("span").html())
+		
+	// }
+	// console.log(numsw)
 }
 
 
@@ -414,9 +465,113 @@ function changeCount(selfDom,spanDom,inc){
 // 	hq("#addId").innerHTML = totalMoney;
 // }
 
+// let numsw =0;
+// 	for(let i=0;i<$(".num").length;i++){
+// 	// console.log($(".num").eq(i).find("span").html())
+// 	numsw=numsw+parseInt($(".num").eq(i).find("span").html())
+		
+// 	}
+// 	console.log(numsw)
+
 
 }
 
+
+
+//显示商品
+
+let phone =getCookie("account")
+console.log(phone)
+$.ajax({
+	type:"get",
+	url:"getShoppingCart.php",
+	data:{
+		"vipName":phone
+	},
+	dataType:"json",
+	async:false,
+	success:function(data){
+		console.log(data)
+		let htmlStr="";
+		for(let i in data){
+			htmlStr+=`
+				<div class="littbox">
+					<input type="button" class="but01">
+					<span class="cla">满减</span>
+					<div class="midright">
+						<span>再购29.1元，立享【第二件1元】</span>
+						<a href="#">去凑单></a>
+					</div>
+				</div>
+				<div class="bodydown" >
+					<input type="button" class="but01">
+					<img src="${data[i].goodsImg}">
+					<span class="xsms">限时秒杀</span>
+					<a href="#">${data[i].goodsName}</a>
+					<div class="piece">
+						<p>${data[i].goodsPrice}</p>
+						<p>${data[i].beiyong1}</p>
+					</div>
+
+
+					<div class="numbox">
+						<div class="addnum">
+							<input type="button" class="reducecla" value="-" id="reduce">
+							<span id="spanDom" class="spanDom">${data[i].goodsCount}</span>
+							<input type="button" class="addcla" value="+" id="add">
+						</div>
+					</div>
+
+
+					<div class="num">
+						<span>${data[i].goodsPrice}</span>
+						<div style="display:none" class="gid">${data[i].goodsId}</div>
+						<a href="javascript:;" class="delcal">删除</a>
+					</div>
+				</div>
+
+				</div>
+					<div class="line2">
+				</div>
+		`;
+		}
+		
+		document.getElementById("shop").innerHTML = htmlStr;
+	},
+	error:function(error){
+		console.log("加入购物车错误")
+	}
+});
+//删除商品
+$(document).on("click",".delcal",function(){
+	let nums =$(this).prev().html()
+	// console.log(nums)
+	$.ajax({
+        "type":"get",
+        "url":"deleteGoods.php",
+        "data":{"vipName":phone,
+        		"goodsId":nums
+            },
+        async: false,
+        success: function(data){
+
+            }
+        })
+ 
+	$(this).parentsUntil($("#shop")).remove()
+	$(this).parentsUntil($("#shop")).next().remove()
+	$(this).parent().parent().parent().next().remove()
+	console.log($(this))
+})
+
+
+//修改商品
+
+$(document).on("click",".addcal",function(){
+	let nums = $(this).parent().parent().parent().find($(".gid")).html()
+	// console.log(nums)
+ 
+})
 
 
 function hq(str){

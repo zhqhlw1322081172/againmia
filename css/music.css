@@ -1,0 +1,49 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+
+
+/*音乐内容*/
+.musicbox{
+	width:1000px;
+	height: 65px; 
+	margin: 0 auto;
+	border-bottom: 2px solid #cccccc;
+}
+.musicbox p{
+	font-size: 15px;
+	color:#333333;
+	padding-top: 38px;
+}
+.bodybox{
+	width: 995px;
+	height:59px; 
+	border-bottom:1px dashed #cccccc;
+	margin: 0 auto;
+}
+.bodybox a{
+	float: left;
+	width: 995px;
+	padding-top: 24px;
+	color:#333333; 
+	font-size:16px;
+}
+.bodybox a i{
+	float: right;
+	margin-right:5px; 
+}
+.diff{
+	height: 42px;
+	width: 995px;
+}
+.diff a{
+	line-height: 42px;
+	height: 42px;
+	padding-top: 0;
+}
+
+
+
+
+

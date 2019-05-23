@@ -73,10 +73,14 @@ a{
 .num{
 	width:304px; 
 	height:38px;
-	margin: 0 auto;
+	/*margin: 0 auto;*/
+	margin-left: 18px;
 	margin-top: 16px;
 	color: #111111;
 	font-size:18px;
+}
+.num span{
+	font-size: 16px;
 }
 .pass{
 	width:245px; 

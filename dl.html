@@ -51,6 +51,7 @@
 	</div>
 </body>
 </html>
+<script type="text/javascript" src="js/cookieTools.js"></script>
 <script type="text/javascript">
 	window.onload = function(){
 		$("#but1").onclick = function(){
@@ -59,6 +60,8 @@
 			xhr.onreadystatechange = function(){
 				if(xhr.readyState ==4 && xhr.status == 200){
 					if(xhr.responseText =="1"){
+						var account = $("#ursephone").value;
+						addCookie('account',account);
 						location.href = "miasy.html";
 					}else{
 						alert("密码或账号错误，请重新输入");
